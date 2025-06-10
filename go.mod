@@ -1,6 +1,6 @@
-module github.com/evalphobia/wait-database-cli
+module github.com/evalphobia/wait-database-cli/v2
 
-go 1.21.7
+go 1.24.4
 
 require (
 	github.com/go-sql-driver/mysql v1.7.1
