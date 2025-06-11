@@ -1,7 +1,7 @@
-FROM golang:1.24.4-bookworm as builder
+FROM golang:1.24.4-bookworm AS builder
 
 WORKDIR /go/src/github.com/evalphobia/wait-database-cli
-ENV GO111MODULE on
+ENV GO111MODULE=on
 COPY go.mod ./
 RUN go mod download
 
