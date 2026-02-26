@@ -18,8 +18,9 @@ import (
 )
 
 const (
-	timeout     = 600 // ≒ 10 minutes
-	logInterval = 5   // ≒ 5 seconds
+	timeout       = 600 // ≒ 10 minutes
+	logInterval   = 5   // ≒ 5 seconds
+	graceInterval = 30  // grace period after startup (retry on all errors)
 )
 
 func main() {
@@ -124,7 +125,8 @@ func main() {
 
 		err = db.Ping()
 		if err != nil {
-			if !isWaitingError(err, dbType) {
+			// after grace period, only retry on known waiting errors
+			if i > graceInterval && !isWaitingError(err, dbType) {
 				panic(err)
 			}
 			if i%logInterval == 0 {
