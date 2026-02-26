@@ -178,6 +178,8 @@ func isWaitingError(err error, dbType string) bool {
 		return true
 	case dbType == "postgresql" && strings.Contains(e, "no such host"):
 		return true
+	case dbType == "postgresql" && strings.Contains(e, "connection reset by peer"):
+		return true
 	}
 	return false
 }
